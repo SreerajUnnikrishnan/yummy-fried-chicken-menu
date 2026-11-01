@@ -1,0 +1,16 @@
+name: Supabase Keep Alive
+on:
+  schedule:
+    - cron: '0 0 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  ping-database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase API
+        run: |
+          curl -X GET '${{ secrets.VITE_SUPABASE_URL }}/rest/v1/menu_items?select=id&limit=1' \
+          -H 'apikey: ${{ secrets.VITE_SUPABASE_ANON_KEY }}' \
+          -H 'Authorization: Bearer ${{ secrets.VITE_SUPABASE_ANON_KEY }}'
+
