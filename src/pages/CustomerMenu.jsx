@@ -586,6 +586,16 @@ export default function CustomerMenu() {
             </a>
           </div>
         </div>
+
+        {/* Powered by JeztBrain */}
+        <div className="text-center mt-6">
+          <a
+            href="#"
+            className="text-xs text-center text-gray-500 hover:text-gray-400 transition-colors"
+          >
+            Powered by JeztBrain
+          </a>
+        </div>
       </footer>
 
       {/* =====================================================================
