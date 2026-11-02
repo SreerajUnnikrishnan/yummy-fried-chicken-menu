@@ -16,7 +16,7 @@ import {
 const LOCAL_ITEMS_KEY = 'yummy_kuwait_menu_items_v29';
 const LOCAL_CATEGORIES_KEY = 'yummy_kuwait_categories_v25';
 const LOCAL_LANG_KEY = 'yummy_kuwait_lang';
-const LOCAL_THEME_KEY = 'yummy_kuwait_theme';
+const LOCAL_THEME_KEY = 'yummy_kuwait_theme_v2';
 const LOCAL_REVIEWS_KEY = 'yummy_kuwait_reviews_v1';
 const LOCAL_SHOW_REVIEWS_KEY = 'yummy_kuwait_show_reviews';
 const LOCAL_VIEW_MODES_KEY = 'yummy_kuwait_category_view_modes_v1';
@@ -68,6 +68,10 @@ if (typeof window !== 'undefined') {
         localStorage.removeItem(k);
       }
     }
+    // Remove legacy theme key so light mode is the clean default for all users
+    if (localStorage.getItem('yummy_kuwait_theme')) {
+      localStorage.removeItem('yummy_kuwait_theme');
+    }
   } catch (e) {
     // Ignore storage errors
   }
@@ -96,9 +100,9 @@ export function MenuProvider({ children }) {
 
   const [theme, setTheme] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem(LOCAL_THEME_KEY) || 'dark';
+      return localStorage.getItem(LOCAL_THEME_KEY) || 'light';
     }
-    return 'dark';
+    return 'light';
   });
 
   // Global Staff Admin toggle: Show Customer Reviews on Menu
